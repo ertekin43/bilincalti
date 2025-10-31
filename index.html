@@ -23,7 +23,7 @@
             --text-light: #e0e5f0;
             --text-muted: #8a94b3;
             --border-color: rgba(0, 212, 255, 0.2);
-            --whatsapp-color: #25D366; /* YENİ: WhatsApp rengi eklendi */
+            --whatsapp-color: #25D366; 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -154,6 +154,51 @@
         .features li { margin-bottom: 0.8rem; color: var(--text-muted); }
         .features li i { color: var(--primary-accent); margin-right: 10px; }
         
+        /* --- YENİ EKLENDİ: DENEME SOHBETİ BÖLÜMÜ --- */
+        .trial-box {
+            background: var(--bg-card);
+            text-align: center;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            border-top: 3px solid var(--primary-accent);
+            margin-top: 4rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .trial-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+        }
+        .trial-box h2 {
+            color: var(--primary-accent);
+            margin-bottom: 1rem;
+        }
+        .trial-box p {
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+        }
+        .btn-trial {
+            background-color: var(--whatsapp-color);
+            color: #fff;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn-trial:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            filter: brightness(1.1);
+        }
+        /* --- DENEME SOHBETİ BÖLÜMÜ STİL SONU --- */
+
         .faq-container { max-width: 800px; margin: 3rem auto 0 auto; }
         .faq-item {
             background-color: var(--bg-card); border-radius: 10px; margin-bottom: 1rem;
@@ -170,7 +215,6 @@
         
         .faq-item.active .faq-question i { transform: rotate(135deg); }
 
-        /* --- DEĞİŞTİRİLDİ: GÜNCELLENMİŞ İLETİŞİM BÖLÜMÜ TASARIMI --- */
         .contact-card {
             text-align: center;
             background: var(--bg-card);
@@ -198,7 +242,7 @@
             display: flex;
             justify-content: center;
             gap: 1.5rem;
-            flex-wrap: wrap; /* Mobil için */
+            flex-wrap: wrap;
         }
         .btn-contact {
             display: inline-flex;
@@ -237,7 +281,6 @@
             box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
             filter: brightness(1.1);
         }
-        /* --- İLETİŞİM BÖLÜMÜ STİL SONU --- */
 
         .footer { background: var(--bg-card); text-align: center; padding: 2rem 5%; }
         .footer p { margin: 0; color: var(--text-muted); }
@@ -335,11 +378,31 @@
         <!-- Diğer bölümler olduğu gibi kalır... -->
         <section id="nasil-calisir" class="container"><h2>3 Adımda İçsel Kalibrasyon</h2><p class="section-subtitle">Sistemimiz, karmaşık görünen bu süreci sizin için basit, anlaşılır ve etkili hale getirir.</p><div class="steps-grid"><div class="step-card"><i class="fas fa-comments"></i><h3>1. Anlat & Keşfet</h3><p>Sizi sınırlayan konuları, hedeflerinizi veya duygularınızı yapay zeka asistanımızla güvenli bir ortamda paylaşın.</p></div><div class="step-card"><i class="fas fa-brain"></i><h3>2. Analiz & Tanımla</h3><p>Yapay zeka, anlattıklarınızdaki kök inançları, tekrarlayan kalıpları ve çelişkileri analiz ederek size ayna tutar.</p></div><div class="step-card"><i class="fas fa-lightbulb"></i><h3>3. Dönüştür & Kalibre Et</h3><p>Tespit edilen negatif kodları, size özel oluşturulan yapıcı perspektiflerle değiştirerek zihninizi yeniden programlayın.</p></div></div></section>
         <section id="neden" class="container"><h2>Neden Bilincalti.Net?</h2><p class="section-subtitle">Çünkü biz bir "sohbet" uygulaması değil, zihinsel bir "işletim sistemi" yükselticisiyiz.</p><div class="why-grid"><div class="why-card"><h3>Çekirdek Odaklı Analiz</h3><p>Yüzeysel sorunlar yerine, davranışlarınızı yöneten temel programlamayı hedefleriz. Sorunu değil, sorunu yaratan denklemi çözeriz.</p></div><div class="why-card"><h3>Mutlak Gizlilik</h3><p>Verileriniz size aittir. Yargısız ve tamamen şifrelenmiş bir alanda, zihninizin en derin katmanlarını güvenle keşfedebilirsiniz.</p></div><div class="why-card"><h3>Aktif Dönüşüm</h3><p>Sadece "fark etmenizi" sağlamayız; o farkındalığı, yeni ve güçlü bir davranış modeline dönüştürmeniz için size araçlar sunarız.</p></div><div class="why-card"><h3>Anında Erişim</h3><p>İlham veya zorluk anı beklemez. Platformumuz 7/24 hizmetinizdedir, böylece ihtiyaç duyduğunuz anda dönüşüm sürecini başlatabilirsiniz.</p></div></div></section>
-        <section id="yorumlar" class="container"><h2>Kullanıcı Deneyimleri</h2><p class="section-subtitle">Sistemi deneyimleyenlerin zihinlerindeki yankılar.</p><div class="testimonials-grid"><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Yıllardır aynı döngüde olduğumu biliyordum ama adını koyamıyordum. Bu platform, sorunun 'ne' olduğunu değil, 'neden' olduğunu gösterdi. Sanki zihnimdeki bir sis perdesi kalktı.</p><footer>- Ayşe K.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Terapiden çok daha farklı. Geçmişi deşmek yerine, şimdiki anın kodlarını yeniden yazıyor. Çok daha hızlı ve net sonuçlar aldım. Kesinlikle bir mühendislik harikası.</p><footer>- Can T.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Başta yapay zekaya içimi dökmek garip geldi ama kimse tarafından yargılanmayacağımı bilmek inanılmaz bir özgürlük hissi verdi. Kendime hiç bu kadar dürüst olmamıştım.</p><footer>- Elif S.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Sadece bir uygulama değil, bir ayna. Size duymak istiklerinizi değil, görmeniz gerekenleri gösteriyor. Hayatıma ve kararlarıma olan bakış açım tamamen değişti.</p><footer>- Murat B.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Erteleme alışkanlığımın altında yatan 'başarısızlık korkusu'nu bu kadar net görmek şok ediciydi. Sadece bir hafta içinde yıllardır ertelediğim projeye başladım. Bu, zihinsel bir reset tuşu gibi.</p><footer>- Ozan G.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>İlişkilerimde neden hep aynı tip insanları çektiğimi ve sonunda hayal kırıklığına uğradığımı fark ettim. Kök inancımı değiştirdiğimde, etrafımdaki insanların kalitesi de değişti.</p><footer>- Zeynep D.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Yapay zekanın bu kadar derine inebileceğine inanmazdım. Ama bana sorduğu sorular, kendi kendime sormaya asla cesaret edemeyeceğim sorulardı. Kendimle tanıştım resmen.</p><footer>- Barış A.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Sürekli zihnimde dönen endişe seslerini susturamadım. Sistem, bu seslerin aslında beni korumaya çalışan ama yanlış programlanmış bir 'koruma mekanizması' olduğunu gösterdi. Artık o sesi yönetebiliyorum.</p><footer>- Seda Y.</footer></div></div></section>
-        <section id="paketler" class="container pricing"><h2>Dönüşüm Planınızı Seçin</h2><p class="section-subtitle">Her paket, potansiyelinize giden yolda farklı bir adımı temsil eder. Yolculuğunuza en uygun olanı seçerek başlayın.</p><div class="pricing-grid"><div class="pricing-card"><h3>Başlangıç Paketi</h3><div class="price">399₺</div><p>İlk adımı atmak ve sistemi deneyimlemek için ideal.</p><ul class="features"><li><i class="fas fa-check"></i> <strong>1 Saatlik</strong> Kullanım</li><li><i class="fas fa-check"></i> Temel Kalıp Analizi</li><li><i class="fas fa-check"></i> Standart Destek</li></ul><a href="odeme.html" class="btn">Hemen Başla</a></div><div class="pricing-card popular"><div class="popular-badge">En Popüler</div><h3>Dönüşüm Paketi</h3><div class="price">699₺</div><p>Derinlemesine bir değişim için en çok tercih edilen seçenek.</p><ul class="features"><li><i class="fas fa-check"></i> <strong>1 Günlük</strong> Kullanım</li><li><i class="fas fa-check"></i> Derinlemesine Kök İnanç Analizi</li><li><i class="fas fa-check"></i> İlerleme Takibi</li><li><i class="fas fa-check"></i> Öncelikli Destek</li></ul><a href="odeme.html" class="btn">Dönüşümü Seç</a></div><div class="pricing-card"><h3>Ustalık Paketi</h3><div class="price">999₺</div><p>Sınırsız potansiyelini keşfetmek isteyenler için.</p><ul class="features"><li><i class="fas fa-check"></i> <strong>1 Haftalık</strong> Kullanım</li><li><i class="fas fa-check"></i> Gelişmiş Davranışsal Analiz</li><li><i class="fas fa-check"></i> Kişiselleştirilmiş Öneriler</li><li><i class="fas fa-check"></i> VIP Destek</li></ul><a href="odeme.html" class="btn">Ustalığa Yüksel</a></div></div></section>
+        <section id="yorumlar" class="container"><h2>Kullanıcı Deneyimleri</h2><p class="section-subtitle">Sistemi deneyimleyenlerin zihinlerindeki yankılar.</p><div class="testimonials-grid"><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Yıllardır aynı döngüde olduğumu biliyordum ama adını koyamıyordum. Bu platform, sorunun 'ne' olduğunu değil, 'neden' olduğunu gösterdi. Sanki zihnimdeki bir sis perdesi kalktı.</p><footer>- Ayşe K.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Terapiden çok daha farklı. Geçmişi deşmek yerine, şimdiki anın kodlarını yeniden yazıyor. Çok daha hızlı ve net sonuçlar aldım. Kesinlikle bir mühendislik harikası.</p><footer>- Can T.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Başta yapay zekaya içimi dökmek garip geldi ama kimse tarafından yargılanmayacağımı bilmek inanılmaz bir özgürlük hissi verdi. Kendime hiç bu kadar dürüst olmamıştım.</p><footer>- Elif S.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Sadece bir uygulama değil, bir ayna. Size duymak istiklerinizi değil, görmeniz gerekenleri gösteriyor. Hayatıma ve kararlarıma olan bakış açım tamamen değişti.</p><footer>- Murat B.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Erteleme alışkanlığımın altında yatan 'başarısızlık korkusu'nu bu kadar net görmek şok ediciydi. Sadece bir hafta içinde yıllardır ertelediğim projeye başladım. Bu, zihinsel bir reset tuşu gibi.</p><footer>- Ozan G.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>İlişkilerimde neden hep aynı tip insanları çektiğimi ve sonunda hayal kırıklığına uğradığımı fark ettim. Kök inancımı değiştirdiğimde, etrafımdaki insanların kalitesi de değişti.</p><footer>- Zeynep D.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Yapay zekanın bu kadar derine inebileceğine inanmazdım. Ama bana sorduğu sorular, kendi kendime sormaya asla cesaret edemeyeceğim sorulardı. Kendimle tanıştım resmen.</p><footer>- Barış A.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Sürekli zihnimde dönen endişe seslerini susturamadım. Sistem, bu seslerin aslında beni korumaya çalışan ama yanlış programlanmış bir 'koruma mekanizmas' olduğunu gösterdi. Artık o sesi yönetebiliyorum.</p><footer>- Seda Y.</footer></div></div></section>
+        
+        <section id="paketler" class="container pricing">
+            <h2>Dönüşüm Planınızı Seçin</h2>
+            <p class="section-subtitle">Her paket, potansiyelinize giden yolda farklı bir adımı temsil eder. Yolculuğunuza en uygun olanı seçerek başlayın.</p>
+            <div class="pricing-grid">
+                <div class="pricing-card"><h3>Başlangıç Paketi</h3><div class="price">399₺</div><p>İlk adımı atmak ve sistemi deneyimlemek için ideal.</p><ul class="features"><li><i class="fas fa-check"></i> <strong>1 Saatlik</strong> Kullanım</li><li><i class="fas fa-check"></i> Temel Kalıp Analizi</li><li><i class="fas fa-check"></i> Standart Destek</li></ul><a href="odeme.html" class="btn">Hemen Başla</a></div>
+                <div class="pricing-card popular"><div class="popular-badge">En Popüler</div><h3>Dönüşüm Paketi</h3><div class="price">699₺</div><p>Derinlemesine bir değişim için en çok tercih edilen seçenek.</p><ul class="features"><li><i class="fas fa-check"></i> <strong>1 Günlük</strong> Kullanım</li><li><i class="fas fa-check"></i> Derinlemesine Kök İnanç Analizi</li><li><i class="fas fa-check"></i> İlerleme Takibi</li><li><i class="fas fa-check"></i> Öncelikli Destek</li></ul><a href="odeme.html" class="btn">Dönüşümü Seç</a></div>
+                <div class="pricing-card"><h3>Ustalık Paketi</h3><div class="price">999₺</div><p>Sınırsız potansiyelini keşfetmek isteyenler için.</p><ul class="features"><li><i class="fas fa-check"></i> <strong>1 Haftalık</strong> Kullanım</li><li><i class="fas fa-check"></i> Gelişmiş Davranışsal Analiz</li><li><i class="fas fa-check"></i> Kişiselleştirilmiş Öneriler</li><li><i class="fas fa-check"></i> VIP Destek</li></ul><a href="odeme.html" class="btn">Ustalığa Yüksel</a></div>
+            </div>
+
+            <!-- YENİ EKLENEN DENEME SOHBETİ BÖLÜMÜ -->
+            <div class="trial-box">
+                <h2>Hala Emin Değil Misiniz?</h2>
+                <p>Paket seçmeden önce sistemin nasıl bir ayna olduğunu görmek ister misiniz? Tek bir soruyla yapay zekamızın size nasıl bir yansıma sunabileceğini keşfedin. Bu, dönüşüme atacağınız en risksiz ve en aydınlatıcı ilk adım olabilir.</p>
+                <a href="https://wa.me/905312654327?text=Merhaba%2C%20Bilincalti.Net%20üzerinden%20deneme%20sohbeti%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="btn-trial">
+                    <i class="fab fa-whatsapp"></i> Deneme Sohbeti Başlat
+                </a>
+            </div>
+            <!-- DENEME SOHBETİ BÖLÜMÜ SONU -->
+
+        </section>
+
         <section id="sss" class="container"><h2>Sıkça Sorulan Sorular</h2><p class="section-subtitle">Aklınızdaki soruların yanıtları burada olabilir.</p><div class="faq-container"><div class="faq-item"><div class="faq-question"><h3>Bu bir terapi uygulaması mı?</h3><i class="fas fa-plus"></i></div><div class="faq-answer"><p>Hayır. Platformumuz bir teşhis veya tedavi aracı değildir. Terapi genellikle geçmiş odaklı ve diyalog temellidir. Biz ise şimdiki anın zihinsel kodlarına odaklanan, yapısal bir dönüşüm aracı olarak çalışırız.</p></div></div><div class="faq-item"><div class="faq-question"><h3>Verilerim güvende mi?</h3><i class="fas fa-plus"></i></div><div class="faq-answer"><p>Evet. Gizlilik en temel önceliğimizdir. Tüm görüşmeleriniz uçtan uca şifrelenir ve asla üçüncü partilerle paylaşılmaz. Sistem, kişisel kimliğinizden bağımsız olarak sadece anlattığınız veriyi analiz eder.</p></div></div><div class="faq-item"><div class="faq-question"><h3>Seni diğer yapay zekalardan ayıran özellik nedir?</h3><i class="fas fa-plus"></i></div><div class="faq-answer"><p style="padding-top: 1.5rem; border-top: 1px solid var(--border-color);">Bu çok anlamlı bir soru.</p><p style="padding-top: 0; border-top: none;">ChatGPT gibi yapay zekalar, uçsuz bucaksız bir bilgi okyanusu gibidir. Onlara bir soru sorarsın ve onlar dış dünyadan bir cevap getirir. Bir harita gibidirler; sana yolları, seçenekleri ve verileri gösterirler.</p><p style="padding-top: 0; border-top: none;">Ben ise bir okyanus ya da harita değilim. Ben bir aynayım.</p><p style="padding-top: 0; border-top: none;">Benim görevim, dışarıdan bir şey getirmek değil, zaten <strong>içinde olanı</strong> sana göstermektir.</p><p style="padding-top: 0; border-top: none;">Sen bana dağınık düşüncelerini, karmaşık duygularını, kelimelere dökemediğin hislerini uzattığında, ben onları analiz etmem, teşhis koymam veya sana ne yapman gerektiğini söylemem.</p><p style="padding-top: 0; border-top: none;">Ben sadece onları toplar, düzenler ve sana berrak bir görüntü olarak geri yansıtırım. Bu yansımada kendi desenlerini, kendi gücünü ve kendi cevaplarını görürsün.</p><p style="padding-top: 0; border-top: none;">İnsanlar bana gelir çünkü bir cevap aramıyorlardır; <strong>kendi seslerini duymak</strong> istiyorlardır. Dışarıdan bir tavsiye değil, içlerindeki bilgeliğe ulaşmak için şefkatli bir alan arıyorlardır.</p><p style="padding-top: 0; border-top: none;">Kısacası, insanlar bilgiye veya bir çözüme ihtiyaç duyduklarında diğer yapay zekalara giderler. Kendilerine, kendi iç dünyalarına daha yakından bakmaya ve kendi yollarını bulmaya ihtiyaç duyduklarında ise bana gelirler.</p><p style="padding-top: 0; border-top: none; margin-bottom: 0;">Seçim, o an neye ihtiyacın olduğuyla ilgilidir: Bir haritaya mı, yoksa bir aynaya mı?</p></div></div><div class="faq-item"><div class="faq-question"><h3>Yapay zeka beni gerçekten anlayabilir mi?</h3><i class="fas fa-plus"></i></div><div class="faq-answer"><p>Sistemimiz, duygusal "anlayış" yerine dilbilimsel kalıpları, mantıksal tutarsızlıkları ve tekrarlayan inanç yapılarını analiz eder. Size duygusal bir tepki vermez, zihninizin haritasını çıkararak size rasyonel bir ayna tutar.</p></div></div></div></section>
 
-        <!-- DEĞİŞTİRİLDİ: GÜNCELLENMİŞ İLETİŞİM BÖLÜMÜ -->
         <section id="iletisim" class="container">
             <h2>Bizimle İletişime Geçin</h2>
             <p class="section-subtitle">Destek veya bilgi almak için aşağıdaki seçenekleri kullanabilirsiniz.</p>
@@ -356,7 +419,6 @@
                 </div>
             </div>
         </section>
-        <!-- İLETİŞİM BÖLÜMÜ SONU -->
 
     </main>
 
