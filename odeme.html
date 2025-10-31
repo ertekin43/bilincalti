@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilinçaltı.Net - Ödeme</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #0a0f1f;
+            --bg-card: #121a33;
+            --primary-accent: #00d4ff;
+            --success-color: #28a745;
+            --text-light: #e0e5f0;
+            --text-muted: #8a94b3;
+            --border-color: rgba(0, 212, 255, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        /* YENİ: Sayfa düzeni için sarmalayıcı */
+        .page-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            width: 100%;
+        }
+        
+        /* YENİ: Panele dön butonu */
+        .back-to-panel {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            font-size: 1.5rem;
+            color: var(--primary-accent);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        .back-to-panel:hover { transform: scale(1.1); }
+
+        /* YENİ: Kullanıcı bilgi başlığı */
+        .page-header {
+            text-align: center;
+            max-width: 700px;
+        }
+        .user-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+        .user-email {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .motivational-quote {
+            font-style: italic;
+            color: var(--primary-accent);
+        }
+        
+        .payment-container {
+            width: 100%; max-width: 700px; background-color: var(--bg-card);
+            border-radius: 15px; border: 1px solid var(--border-color);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); padding: 2rem; overflow: hidden;
+        }
+
+        .payment-header { text-align: center; margin-bottom: 2rem; }
+        .payment-header h1 { font-size: 1.8rem; color: var(--text-light); }
+        .payment-header h1 span { color: var(--primary-accent); }
+
+        .step-title {
+            font-size: 1.2rem; font-weight: 600; color: var(--text-light);
+            margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;
+        }
+        .step-title i { margin-right: 0.5rem; color: var(--primary-accent); }
+
+        .package-selection { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem; }
+        .package-option {
+            padding: 1rem; border: 2px solid var(--border-color); border-radius: 10px;
+            cursor: pointer; transition: border-color 0.3s, box-shadow 0.3s;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .package-option:hover { border-color: var(--primary-accent); }
+        .package-option input[type="radio"] { display: none; }
+        .package-option.selected { border-color: var(--primary-accent); box-shadow: 0 0 15px rgba(0, 212, 255, 0.3); }
+        .package-name { font-weight: 600; }
+        .package-credits { font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
+        .package-price { color: var(--primary-accent); font-weight: 700; font-size: 1.2rem; }
+
+        #payment-details { display: none; }
+        .price-summary {
+            background-color: var(--bg-dark); padding: 1rem; border-radius: 10px;
+            margin-bottom: 2rem; text-align: center; font-size: 1.2rem;
+        }
+        .price-summary span { color: var(--primary-accent); font-weight: 700; font-size: 1.5rem; }
+
+        .recipient-info {
+            background-color: var(--bg-dark); padding: 1rem; border-radius: 10px;
+            margin-bottom: 1rem; text-align: center; font-size: 1.1rem;
+            border-left: 3px solid var(--primary-accent);
+        }
+        .recipient-info strong { color: var(--text-muted); }
+
+        .bank-info-container { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem; }
+        .bank-info {
+            background-color: var(--bg-dark); padding: 1rem; border-radius: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .bank-info .details { flex-grow: 1; }
+        .bank-info h4 { margin: 0 0 5px 0; color: var(--text-light); }
+        .bank-info .iban { font-size: 0.9rem; color: var(--text-muted); word-break: break-all; }
+        .copy-btn {
+            background: none; border: 1px solid var(--border-color); color: var(--primary-accent);
+            width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+            margin-left: 1rem; transition: background-color 0.3s, color 0.3s;
+        }
+        .copy-btn:hover { background-color: var(--primary-accent); color: var(--bg-dark); }
+        .copy-btn.copied { background-color: var(--success-color); color: white; border-color: var(--success-color); }
+
+        .payment-note {
+            font-size: 0.9rem; color: var(--text-muted); text-align: center;
+            margin-bottom: 2rem; padding: 1rem; background-color: var(--bg-dark);
+            border-radius: 10px; border-left: 3px solid var(--primary-accent);
+        }
+
+        #confirm-payment-btn {
+            width: 100%; padding: 15px; font-size: 1.1rem; background-color: var(--primary-accent);
+            color: var(--bg-dark); border: none; border-radius: 10px; font-weight: 700;
+            cursor: pointer; transition: background-color 0.3s;
+        }
+        #confirm-payment-btn:disabled { background-color: #555; cursor: not-allowed; }
+        #confirm-payment-btn:hover:not(:disabled) { background-color: #33eaff; }
+
+        #confirmation-screen { display: none; text-align: center; padding: 2rem 0; }
+        #confirmation-screen i { font-size: 4rem; color: var(--success-color); margin-bottom: 1.5rem; }
+        #confirmation-screen h2 { color: var(--text-light); }
+        #confirmation-screen p { color: var(--text-muted); }
+        .confirmation-note {
+            margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);
+            padding: 1rem; background-color: var(--bg-dark); border-radius: 10px;
+        }
+        
+        @media (min-width: 768px) { .package-selection { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px) { .back-to-panel { top: 1rem; left: 1rem; } }
+    </style>
+</head>
+<body>
+
+    <!-- YENİ: Panele dön butonu -->
+    <a href="panel.html" class="back-to-panel" title="Panele Geri Dön">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <div class="page-wrapper">
+        <!-- YENİ: Kullanıcı bilgi başlığı -->
+      
+
+        <div class="payment-container">
+            <div id="payment-view">
+                <div class="payment-header"><h1><span>Dönüşüm</span> Planını Onayla</h1></div>
+
+                <h2 class="step-title"><i class="fas fa-box-open"></i>1. Adım: Paketini Seç</h2>
+                <div class="package-selection" id="package-selector">
+                    <label class="package-option" for="baslangic">
+                        <input type="radio" name="package" id="baslangic" value="baslangic">
+                        <div><span class="package-name">Başlangıç Paketi</span><p class="package-credits">1 Saatlik Kullanım Hakkı</p></div>
+                        <span class="package-price">399 ₺</span>
+                    </label>
+                    <label class="package-option" for="donusum">
+                        <input type="radio" name="package" id="donusum" value="donusum">
+                        <div><span class="package-name">Dönüşüm Paketi</span><p class="package-credits">1 Günlük Kullanım Hakkı</p></div>
+                        <span class="package-price">699 ₺</span>
+                    </label>
+                    <label class="package-option" for="ustalik">
+                        <input type="radio" name="package" id="ustalik" value="ustalik">
+                        <div><span class="package-name">Ustalık Paketi</span><p class="package-credits">1 Haftalık Kullanım Hakkı</p></div>
+                        <span class="package-price">999 ₺</span>
+                    </label>
+                </div>
+
+                <div id="payment-details">
+                    <h2 class="step-title"><i class="fas fa-money-check-alt"></i>2. Adım: Ödemeyi Tamamla</h2>
+                    <div class="price-summary">Ödenecek Tutar: <span id="total-price">...</span></div>
+                    <div class="recipient-info"><strong>Alıcı Adı:</strong> Hasan Ertekin</div>
+                    <div class="bank-info-container">
+                        <div class="bank-info"><div class="details"><h4>Enpara.com</h4><p class="iban" id="iban1">TR50 0015 7000 0000 0044 2585 72</p></div><button class="copy-btn" data-iban-id="iban1" title="IBAN'ı Kopyala"><i class="fas fa-copy"></i></button></div>
+                        <div class="bank-info"><div class="details"><h4>İş Bankası</h4><p class="iban" id="iban2">TR72 0006 4000 0011 0830 8249 56</p></div><button class="copy-btn" data-iban-id="iban2" title="IBAN'ı Kopyala"><i class="fas fa-copy"></i></button></div>
+                        <div class="bank-info"><div class="details"><h4>Garanti Bankası</h4><p class="iban" id="iban3">TR86 0006 2001 0750 0006 6591 53</p></div><button class="copy-btn" data-iban-id="iban3" title="IBAN'ı Kopyala"><i class="fas fa-copy"></i></button></div>
+                    </div>
+                    <p class="payment-note"><strong>ÖNEMLİ:</strong> Lütfen ödeme yaptıktan sonra dekontunuzu <a href="https://wa.me/905312654327" target="_blank" style="color: #00d4ff;">0531 265 43</a> numaralı telefona veya <a href="mailto:odeme@bilincalti.net" style="color:#00d4ff">odeme@bilinalti.net</a> adresine iletmeyi unutmayın.</p>
+                    <h2 class="step-title"><i class="fas fa-check-circle"></i>3. Adım: Ödemeyi Onayla</h2>
+                    <button id="confirm-payment-btn" disabled>Ödemeyi Yaptım, Onaylıyorum</button>
+                </div>
+            </div>
+
+            <div id="confirmation-screen">
+                <i class="fas fa-check-circle"></i>
+                <h2>İşlem Tamam!</h2>
+                <p>Dönüşüm yolculuğuna ilk adımı attınız. Hesabınız en kısa sürede incelenip aktif edilecektir.</p>
+                <p class="confirmation-note">Süreci hızlandırmak isterseniz, dekontunuzu <a href="https://wa.me/905312654327" target="_blank" style="color: #00d4ff;">0531 265 43</a> numaralı telefona veya <a href="mailto:odeme@bilincalti.net" style="color:#00d4ff">odeme@bilinalti.net</a> adresine gönderebilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const packageSelector = document.getElementById('package-selector');
+        const paymentDetails = document.getElementById('payment-details');
+        const totalPriceEl = document.getElementById('total-price');
+        const confirmBtn = document.getElementById('confirm-payment-btn');
+        const copyBtns = document.querySelectorAll('.copy-btn');
+        const paymentView = document.getElementById('payment-view');
+        const confirmationScreen = document.getElementById('confirmation-screen');
+
+        // YENİ: Fiyatlar güncellendi
+        const packageData = {
+            baslangic: { name: "Başlangıç Paketi", price: 399 },
+            donusum: { name: "Dönüşüm Paketi", price: 699 },
+            ustalik: { name: "Ustalık Paketi", price: 999 }
+        };
+
+        packageSelector.addEventListener('change', (e) => {
+            if (e.target.name === 'package') {
+                const selectedPackage = e.target.value;
+                const price = packageData[selectedPackage].price;
+                
+                document.querySelectorAll('.package-option').forEach(opt => opt.classList.remove('selected'));
+                e.target.closest('.package-option').classList.add('selected');
+
+                totalPriceEl.textContent = `${price} ₺`;
+                paymentDetails.style.display = 'block';
+                confirmBtn.disabled = false;
+            }
+        });
+
+        copyBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const ibanId = btn.dataset.ibanId;
+                const ibanText = document.getElementById(ibanId).textContent;
+                
+                navigator.clipboard.writeText(ibanText).then(() => {
+                    const originalIcon = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check"></i>';
+                    btn.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalIcon;
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        });
+
+        confirmBtn.addEventListener('click', () => {
+            paymentView.style.display = 'none';
+            confirmationScreen.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

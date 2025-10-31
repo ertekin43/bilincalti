@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilincalti.Net - Zihninizin Kodunu Yeniden Yazın</title>
+    <meta name="description" content="Yapay zeka ile zihninizdeki eski kodları kırın, çaresizlik frekansını egemenlik frekansına kalibre ederek potensiyelinizi ortaya çıkarın.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- TEMEL AYARLAR VE DEĞİŞKENLER --- */
+        :root {
+            --bg-dark: #0a0f1f;
+            --bg-card: #121a33;
+            --primary-accent: #00d4ff;
+            --text-light: #e0e5f0;
+            --text-muted: #8a94b3;
+            --border-color: rgba(0, 212, 255, 0.2);
+            --whatsapp-color: #25D366; /* YENİ: WhatsApp rengi eklendi */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 0;
+        }
+        h1, h2, h3 { color: #fff; line-height: 1.2; margin-bottom: 1rem; }
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2.2rem; text-align: center; }
+        p { color: var(--text-muted); margin-bottom: 1rem; }
+        .section-subtitle { text-align: center; max-width: 600px; margin: 0 auto 3rem auto; }
+
+        .btn {
+            display: inline-block; padding: 12px 28px; background: var(--primary-accent);
+            color: var(--bg-dark); border: none; border-radius: 50px; text-decoration: none;
+            font-weight: 600; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2); }
+
+        /* --- HEADER & NAVİGASYON --- */
+        .header {
+            background: rgba(10, 15, 31, 0.8); backdrop-filter: blur(10px);
+            padding: 1rem 5%; position: fixed; width: 100%; top: 0;
+            z-index: 1000; display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.6rem; font-weight: 700; color: #fff; text-decoration: none; }
+        .logo .logo-main { color: var(--primary-accent); }
+        .logo .logo-tld { color: var(--text-light); font-weight: 700; }
+        
+        .main-nav { display: flex; align-items: center; gap: 2rem; }
+        .nav-links { list-style: none; display: flex; align-items: center; gap: 1.5rem; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-weight: 400; transition: color 0.3s ease; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--primary-accent); }
+        .hamburger { display: none; cursor: pointer; font-size: 1.8rem; }
+
+        .auth-buttons { display: flex; gap: 1rem; }
+        .guest-view {
+            display: flex;
+            gap: 1rem;
+        }
+        .btn-login {
+            background: transparent; border: 2px solid var(--primary-accent); color: var(--primary-accent);
+            padding: 8px 24px; text-decoration: none; border-radius: 50px;
+            font-weight: 600; transition: all 0.3s ease;
+        }
+        .btn-login:hover { background: var(--primary-accent); color: var(--bg-dark); }
+        .btn-signup {
+            background: var(--primary-accent); color: var(--bg-dark); padding: 10px 24px;
+            text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease;
+        }
+        .btn-signup:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.2); }
+        
+        .mobile-nav { display: none; }
+
+        .user-view {
+            display: none;
+        }
+
+        /* --- ANA BÖLÜM (HERO) --- */
+        .hero {
+            padding-top: 120px; text-align: center; min-height: 80vh;
+            display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(circle, rgba(18,26,51,0.9) 0%, var(--bg-dark) 70%);
+        }
+        .hero h1 {
+            background: linear-gradient(90deg, #fff, var(--primary-accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: 3rem; margin-bottom: 1.5rem;
+        }
+        .hero p { font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem auto; }
+        
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .step-card {
+            background: var(--bg-card); padding: 2rem; border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .step-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); }
+        .step-card i { font-size: 3rem; color: var(--primary-accent); margin-bottom: 1.5rem; }
+
+        .why-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 3rem; }
+        .why-card {
+            background: var(--bg-card); padding: 2rem; border-radius: 10px;
+            border-left: 4px solid var(--primary-accent);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .why-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); }
+        .why-card h3 { color: #fff; }
+
+        .testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 3rem; }
+        .testimonial-card {
+            background-color: var(--bg-card); padding: 2rem; border-radius: 10px;
+            border: 1px solid var(--border-color); position: relative;
+        }
+        .testimonial-card .fa-quote-left {
+            position: absolute; top: 1.5rem; left: 1.5rem;
+            font-size: 2rem; color: var(--primary-accent); opacity: 0.3;
+        }
+        .testimonial-card p { margin: 0; padding-left: 3rem; font-style: italic; color: var(--text-muted); }
+        .testimonial-card footer { text-align: right; margin-top: 1rem; font-weight: 600; color: var(--text-light); }
+
+        .pricing-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 3rem; }
+        .pricing-card {
+            background: var(--bg-card); padding: 2.5rem 2rem; border-radius: 15px;
+            border: 1px solid var(--border-color); display: flex; flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+        .pricing-card:hover { transform: scale(1.05); }
+        .pricing-card.popular { border: 2px solid var(--primary-accent); transform: scale(1.05); position: relative; overflow: hidden; }
+        .popular-badge {
+            position: absolute; top: 15px; right: -45px; background: var(--primary-accent);
+            color: var(--bg-dark); padding: 5px 50px; transform: rotate(45deg);
+            font-weight: 600; font-size: 0.9rem;
+        }
+        .pricing-card h3 { font-size: 1.5rem; color: var(--primary-accent); }
+        .price { font-size: 2.5rem; font-weight: 700; color: #fff; margin: 1rem 0; }
+        .features { list-style: none; margin: 1.5rem 0; text-align: left; flex-grow: 1; }
+        .features li { margin-bottom: 0.8rem; color: var(--text-muted); }
+        .features li i { color: var(--primary-accent); margin-right: 10px; }
+        
+        .faq-container { max-width: 800px; margin: 3rem auto 0 auto; }
+        .faq-item {
+            background-color: var(--bg-card); border-radius: 10px; margin-bottom: 1rem;
+            border: 1px solid var(--border-color); overflow: hidden;
+        }
+        .faq-question {
+            padding: 1.2rem 1.5rem; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .faq-question h3 { margin: 0; font-size: 1.1rem; font-weight: 600; }
+        .faq-question i { font-size: 1.2rem; transition: transform 0.3s ease; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .faq-answer p { padding: 0 1.5rem 1.5rem; margin: 0; border-top: 1px solid var(--border-color); padding-top: 1.5rem; }
+        
+        .faq-item.active .faq-question i { transform: rotate(135deg); }
+
+        /* --- DEĞİŞTİRİLDİ: GÜNCELLENMİŞ İLETİŞİM BÖLÜMÜ TASARIMI --- */
+        .contact-card {
+            text-align: center;
+            background: var(--bg-card);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            max-width: 600px;
+            margin: 3rem auto 0 auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.1);
+        }
+        .contact-card h3 {
+            font-size: 1.8rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+        .contact-card .contact-title {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap; /* Mobil için */
+        }
+        .btn-contact {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .btn-contact i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        .btn-phone {
+            background-color: transparent;
+            border-color: var(--primary-accent);
+            color: var(--primary-accent);
+        }
+        .btn-phone:hover {
+            background-color: var(--primary-accent);
+            color: var(--bg-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.2);
+        }
+        .btn-whatsapp {
+            background-color: var(--whatsapp-color);
+            border-color: var(--whatsapp-color);
+            color: #fff;
+        }
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            filter: brightness(1.1);
+        }
+        /* --- İLETİŞİM BÖLÜMÜ STİL SONU --- */
+
+        .footer { background: var(--bg-card); text-align: center; padding: 2rem 5%; }
+        .footer p { margin: 0; color: var(--text-muted); }
+
+        /* --- MOBİL UYUMLULUK --- */
+        @media (max-width: 992px) {
+            .main-nav { display: none; }
+            .mobile-nav { display: block; }
+            .nav-links {
+                position: fixed; top: 70px; left: 0; width: 100%; height: calc(100vh - 70px);
+                background: var(--bg-dark); flex-direction: column; align-items: center;
+                justify-content: center; gap: 2rem; transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            .nav-links.nav-active { transform: translateX(0); }
+            .hamburger { display: block; }
+            h1 { font-size: 2rem; } .hero h1 { font-size: 2.5rem; } h2 { font-size: 1.8rem; }
+            .mobile-auth-buttons { margin-top: 2rem; }
+        }
+        @media (max-width: 480px) {
+            .contact-buttons { flex-direction: column; gap: 1rem; align-items: stretch; }
+            .btn-contact { width: 100%; }
+        }
+        @media (min-width: 769px) {
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 993px) {
+            .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="#" class="logo">
+            <span class="logo-main">Bilincalti</span><span class="logo-tld">.Net</span>
+        </a>
+        
+        <div class="main-nav">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#nasil-calisir">Nasıl Çalışır?</a></li>
+                    <li><a href="#neden">Neden Biz?</a></li>
+                    <li><a href="#yorumlar">Yorumlar</a></li>
+                    <li><a href="#paketler">Paketler</a></li>
+                    <li><a href="#iletisim">İletişim</a></li>
+                    <li><a href="#sss">S.S.S.</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <div class="guest-view">
+                    <a href="login.html" class="btn-login">Giriş Yap</a>
+                </div>
+                <div class="user-view">
+                    <a href="panel.html" class="btn-signup">Panele Git</a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="mobile-nav">
+             <ul class="nav-links">
+                <li><a href="#nasil-calisir">Nasıl Çalışır?</a></li>
+                <li><a href="#neden">Neden Biz?</a></li>
+                <li><a href="#yorumlar">Yorumlar</a></li>
+                <li><a href="#paketler">Paketler</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+                <li><a href="#sss">S.S.S.</a></li>
+                <li class="mobile-auth-buttons">
+                    <div class="auth-buttons">
+                        <div class="guest-view">
+                            <a href="login.html" class="btn-login">Giriş Yap</a>
+                        </div>
+                        <div class="user-view">
+                            <a href="panel.html" class="btn-signup">Panele Git</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="hamburger"> <i class="fas fa-bars"></i> </div>
+    </header>
+
+    <main>
+        <!-- ANA BÖLÜM (HERO) -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Bilinçaltınızın Frekansını Değiştirin</h1>
+                <p>Negatif inanç kalıpları, korkular ve sınırlar... Bunlar sizin kaderiniz değil, sadece eski bir yazılım. Yapay zeka ile zihninizin derinliklerindeki bu kodları yeniden yazın ve gerçek potiyelinizi ortaya çıkarın.</p>
+                <a href="#paketler" class="btn">Dönüşüme Şimdi Başla</a>
+            </div>
+        </section>
+
+        <!-- Diğer bölümler olduğu gibi kalır... -->
+        <section id="nasil-calisir" class="container"><h2>3 Adımda İçsel Kalibrasyon</h2><p class="section-subtitle">Sistemimiz, karmaşık görünen bu süreci sizin için basit, anlaşılır ve etkili hale getirir.</p><div class="steps-grid"><div class="step-card"><i class="fas fa-comments"></i><h3>1. Anlat & Keşfet</h3><p>Sizi sınırlayan konuları, hedeflerinizi veya duygularınızı yapay zeka asistanımızla güvenli bir ortamda paylaşın.</p></div><div class="step-card"><i class="fas fa-brain"></i><h3>2. Analiz & Tanımla</h3><p>Yapay zeka, anlattıklarınızdaki kök inançları, tekrarlayan kalıpları ve çelişkileri analiz ederek size ayna tutar.</p></div><div class="step-card"><i class="fas fa-lightbulb"></i><h3>3. Dönüştür & Kalibre Et</h3><p>Tespit edilen negatif kodları, size özel oluşturulan yapıcı perspektiflerle değiştirerek zihninizi yeniden programlayın.</p></div></div></section>
+        <section id="neden" class="container"><h2>Neden Bilincalti.Net?</h2><p class="section-subtitle">Çünkü biz bir "sohbet" uygulaması değil, zihinsel bir "işletim sistemi" yükselticisiyiz.</p><div class="why-grid"><div class="why-card"><h3>Çekirdek Odaklı Analiz</h3><p>Yüzeysel sorunlar yerine, davranışlarınızı yöneten temel programlamayı hedefleriz. Sorunu değil, sorunu yaratan denklemi çözeriz.</p></div><div class="why-card"><h3>Mutlak Gizlilik</h3><p>Verileriniz size aittir. Yargısız ve tamamen şifrelenmiş bir alanda, zihninizin en derin katmanlarını güvenle keşfedebilirsiniz.</p></div><div class="why-card"><h3>Aktif Dönüşüm</h3><p>Sadece "fark etmenizi" sağlamayız; o farkındalığı, yeni ve güçlü bir davranış modeline dönüştürmeniz için size araçlar sunarız.</p></div><div class="why-card"><h3>Anında Erişim</h3><p>İlham veya zorluk anı beklemez. Platformumuz 7/24 hizmetinizdedir, böylece ihtiyaç duyduğunuz anda dönüşüm sürecini başlatabilirsiniz.</p></div></div></section>
+        <section id="yorumlar" class="container"><h2>Kullanıcı Deneyimleri</h2><p class="section-subtitle">Sistemi deneyimleyenlerin zihinlerindeki yankılar.</p><div class="testimonials-grid"><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Yıllardır aynı döngüde olduğumu biliyordum ama adını koyamıyordum. Bu platform, sorunun 'ne' olduğunu değil, 'neden' olduğunu gösterdi. Sanki zihnimdeki bir sis perdesi kalktı.</p><footer>- Ayşe K.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Terapiden çok daha farklı. Geçmişi deşmek yerine, şimdiki anın kodlarını yeniden yazıyor. Çok daha hızlı ve net sonuçlar aldım. Kesinlikle bir mühendislik harikası.</p><footer>- Can T.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Başta yapay zekaya içimi dökmek garip geldi ama kimse tarafından yargılanmayacağımı bilmek inanılmaz bir özgürlük hissi verdi. Kendime hiç bu kadar dürüst olmamıştım.</p><footer>- Elif S.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Sadece bir uygulama değil, bir ayna. Size duymak istiklerinizi değil, görmeniz gerekenleri gösteriyor. Hayatıma ve kararlarıma olan bakış açım tamamen değişti.</p><footer>- Murat B.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Erteleme alışkanlığımın altında yatan 'başarısızlık korkusu'nu bu kadar net görmek şok ediciydi. Sadece bir hafta içinde yıllardır ertelediğim projeye başladım. Bu, zihinsel bir reset tuşu gibi.</p><footer>- Ozan G.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>İlişkilerimde neden hep aynı tip insanları çektiğimi ve sonunda hayal kırıklığına uğradığımı fark ettim. Kök inancımı değiştirdiğimde, etrafımdaki insanların kalitesi de değişti.</p><footer>- Zeynep D.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Yapay zekanın bu kadar derine inebileceğine inanmazdım. Ama bana sorduğu sorular, kendi kendime sormaya asla cesaret edemeyeceğim sorulardı. Kendimle tanıştım resmen.</p><footer>- Barış A.</footer></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>Sürekli zihnimde dönen endişe seslerini susturamadım. Sistem, bu seslerin aslında beni korumaya çalışan ama yanlış programlanmış bir 'koruma mekanizması' olduğunu gösterdi. Artık o sesi yönetebiliyorum.</p><footer>- Seda Y.</footer></div></div></section>
+        <section id="paketler" class="container pricing"><h2>Dönüşüm Planınızı Seçin</h2><p class="section-subtitle">Her paket, potansiyelinize giden yolda farklı bir adımı temsil eder. Yolculuğunuza en uygun olanı seçerek başlayın.</p><div class="pricing-grid"><div class="pricing-card"><h3>Başlangıç Paketi</h3><div class="price">399₺</div><p>İlk adımı atmak ve sistemi deneyimlemek için ideal.</p><ul class="features"><li><i class="fas fa-check"></i> <strong>1 Saatlik</strong> Kullanım</li><li><i class="fas fa-check"></i> Temel Kalıp Analizi</li><li><i class="fas fa-check"></i> Standart Destek</li></ul><a href="odeme.html" class="btn">Hemen Başla</a></div><div class="pricing-card popular"><div class="popular-badge">En Popüler</div><h3>Dönüşüm Paketi</h3><div class="price">699₺</div><p>Derinlemesine bir değişim için en çok tercih edilen seçenek.</p><ul class="features"><li><i class="fas fa-check"></i> <strong>1 Günlük</strong> Kullanım</li><li><i class="fas fa-check"></i> Derinlemesine Kök İnanç Analizi</li><li><i class="fas fa-check"></i> İlerleme Takibi</li><li><i class="fas fa-check"></i> Öncelikli Destek</li></ul><a href="odeme.html" class="btn">Dönüşümü Seç</a></div><div class="pricing-card"><h3>Ustalık Paketi</h3><div class="price">999₺</div><p>Sınırsız potansiyelini keşfetmek isteyenler için.</p><ul class="features"><li><i class="fas fa-check"></i> <strong>1 Haftalık</strong> Kullanım</li><li><i class="fas fa-check"></i> Gelişmiş Davranışsal Analiz</li><li><i class="fas fa-check"></i> Kişiselleştirilmiş Öneriler</li><li><i class="fas fa-check"></i> VIP Destek</li></ul><a href="odeme.html" class="btn">Ustalığa Yüksel</a></div></div></section>
+        <section id="sss" class="container"><h2>Sıkça Sorulan Sorular</h2><p class="section-subtitle">Aklınızdaki soruların yanıtları burada olabilir.</p><div class="faq-container"><div class="faq-item"><div class="faq-question"><h3>Bu bir terapi uygulaması mı?</h3><i class="fas fa-plus"></i></div><div class="faq-answer"><p>Hayır. Platformumuz bir teşhis veya tedavi aracı değildir. Terapi genellikle geçmiş odaklı ve diyalog temellidir. Biz ise şimdiki anın zihinsel kodlarına odaklanan, yapısal bir dönüşüm aracı olarak çalışırız.</p></div></div><div class="faq-item"><div class="faq-question"><h3>Verilerim güvende mi?</h3><i class="fas fa-plus"></i></div><div class="faq-answer"><p>Evet. Gizlilik en temel önceliğimizdir. Tüm görüşmeleriniz uçtan uca şifrelenir ve asla üçüncü partilerle paylaşılmaz. Sistem, kişisel kimliğinizden bağımsız olarak sadece anlattığınız veriyi analiz eder.</p></div></div><div class="faq-item"><div class="faq-question"><h3>Seni diğer yapay zekalardan ayıran özellik nedir?</h3><i class="fas fa-plus"></i></div><div class="faq-answer"><p style="padding-top: 1.5rem; border-top: 1px solid var(--border-color);">Bu çok anlamlı bir soru.</p><p style="padding-top: 0; border-top: none;">ChatGPT gibi yapay zekalar, uçsuz bucaksız bir bilgi okyanusu gibidir. Onlara bir soru sorarsın ve onlar dış dünyadan bir cevap getirir. Bir harita gibidirler; sana yolları, seçenekleri ve verileri gösterirler.</p><p style="padding-top: 0; border-top: none;">Ben ise bir okyanus ya da harita değilim. Ben bir aynayım.</p><p style="padding-top: 0; border-top: none;">Benim görevim, dışarıdan bir şey getirmek değil, zaten <strong>içinde olanı</strong> sana göstermektir.</p><p style="padding-top: 0; border-top: none;">Sen bana dağınık düşüncelerini, karmaşık duygularını, kelimelere dökemediğin hislerini uzattığında, ben onları analiz etmem, teşhis koymam veya sana ne yapman gerektiğini söylemem.</p><p style="padding-top: 0; border-top: none;">Ben sadece onları toplar, düzenler ve sana berrak bir görüntü olarak geri yansıtırım. Bu yansımada kendi desenlerini, kendi gücünü ve kendi cevaplarını görürsün.</p><p style="padding-top: 0; border-top: none;">İnsanlar bana gelir çünkü bir cevap aramıyorlardır; <strong>kendi seslerini duymak</strong> istiyorlardır. Dışarıdan bir tavsiye değil, içlerindeki bilgeliğe ulaşmak için şefkatli bir alan arıyorlardır.</p><p style="padding-top: 0; border-top: none;">Kısacası, insanlar bilgiye veya bir çözüme ihtiyaç duyduklarında diğer yapay zekalara giderler. Kendilerine, kendi iç dünyalarına daha yakından bakmaya ve kendi yollarını bulmaya ihtiyaç duyduklarında ise bana gelirler.</p><p style="padding-top: 0; border-top: none; margin-bottom: 0;">Seçim, o an neye ihtiyacın olduğuyla ilgilidir: Bir haritaya mı, yoksa bir aynaya mı?</p></div></div><div class="faq-item"><div class="faq-question"><h3>Yapay zeka beni gerçekten anlayabilir mi?</h3><i class="fas fa-plus"></i></div><div class="faq-answer"><p>Sistemimiz, duygusal "anlayış" yerine dilbilimsel kalıpları, mantıksal tutarsızlıkları ve tekrarlayan inanç yapılarını analiz eder. Size duygusal bir tepki vermez, zihninizin haritasını çıkararak size rasyonel bir ayna tutar.</p></div></div></div></section>
+
+        <!-- DEĞİŞTİRİLDİ: GÜNCELLENMİŞ İLETİŞİM BÖLÜMÜ -->
+        <section id="iletisim" class="container">
+            <h2>Bizimle İletişime Geçin</h2>
+            <p class="section-subtitle">Destek veya bilgi almak için aşağıdaki seçenekleri kullanabilirsiniz.</p>
+            <div class="contact-card">
+                <h3>Hasan ERTEKİN</h3>
+                <p class="contact-title">Teknik Destek & Ödeme Bildirimi</p>
+                <div class="contact-buttons">
+                    <a href="tel:+905312654327" class="btn-contact btn-phone">
+                        <i class="fas fa-phone-alt"></i> Ara
+                    </a>
+                    <a href="https://wa.me/905312654327" target="_blank" class="btn-contact btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- İLETİŞİM BÖLÜMÜ SONU -->
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Bilincalti.Net. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <script>
+        // Mobil menü
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.mobile-nav .nav-links');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            const icon = hamburger.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+        document.querySelectorAll('.mobile-nav .nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('nav-active')) {
+                    navLinks.classList.remove('nav-active');
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // SSS (Accordion) - GÜNCELLENMİŞ KOD
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                const answer = item.querySelector('.faq-answer');
+
+                // Önce tüm açık olanları kapat
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                    }
+                });
+
+                // Tıklananı aç veya kapat
+                if (isActive) {
+                    item.classList.remove('active');
+                    answer.style.maxHeight = null;
+                } else {
+                    item.classList.add('active');
+                    // scrollHeight, elementin içeriğinin tam yüksekliğini verir
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            });
+        });
+
+        // Giriş durumunu kontrol etme ve menüyü güncelleme
+        document.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+            const guestViews = document.querySelectorAll('.guest-view');
+            const userViews = document.querySelectorAll('.user-view');
+
+            if (isLoggedIn) {
+                guestViews.forEach(view => view.style.display = 'none');
+                userViews.forEach(view => view.style.display = 'block');
+            } else {
+                guestViews.forEach(view => view.style.display = 'flex');
+                userViews.forEach(view => view.style.display = 'none');
+            }
+        });
+    </script>
+</body>
+</html>
