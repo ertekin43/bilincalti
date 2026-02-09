@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duyguların Simyası: Prima Materia'dan Felsefe Taşına</title>
+    <style>
+        /* SİMYASAL TASARIM İLKELERİ */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
+
+        :root {
+            --bg-color: #0f0f10; /* Void / Nigredo */
+            --text-color: #b0b3b8; /* Gümüşümsü / Albedo */
+            --accent-gold: #c5a059; /* Altın / Citrinitas-Rubedo */
+            --accent-crimson: #7a1f1f; /* Kan / Rubedo */
+            --sidebar-bg: #080808;
+            --border-color: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Lora', serif;
+            line-height: 1.8;
+            font-size: 18px;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* T O C (İçindekiler) - Yan Menü */
+        nav {
+            width: 300px;
+            background-color: var(--sidebar-bg);
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+            border-right: 1px solid var(--border-color);
+            padding: 40px 20px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-gold) var(--sidebar-bg);
+        }
+
+        nav h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav li {
+            margin-bottom: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            display: block;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: 'Cinzel', serif;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+            padding-left: 10px;
+        }
+
+        nav .main-chapter {
+            color: var(--accent-crimson);
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 16px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 5px;
+            display: block;
+        }
+
+        /* İçerik Alanı */
+        main {
+            margin-left: 300px; /* Sidebar genişliği kadar */
+            padding: 60px 80px;
+            max-width: 900px;
+            margin-right: auto;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            font-size: 32px;
+            margin-top: 60px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        h3 {
+            font-family: 'Cinzel', serif;
+            color: #ddd;
+            font-size: 24px;
+            margin-top: 40px;
+            position: relative;
+        }
+        
+        h3::before {
+            content: "☿ "; /* Merkür Sembolü */
+            color: var(--accent-gold);
+        }
+
+        h4 {
+             font-family: 'Cinzel', serif;
+             color: var(--accent-gold);
+             font-size: 18px;
+             margin-top: 30px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .drop-cap::first-letter {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5em;
+            float: left;
+            margin-top: -15px;
+            margin-right: 10px;
+            color: var(--accent-crimson);
+        }
+
+        strong {
+            color: #ddd;
+        }
+
+        em {
+            color: var(--accent-gold);
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(197, 160, 89, 0.75), rgba(0, 0, 0, 0));
+            margin: 50px 0;
+        }
+
+        /* Mobil Uyum */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            nav {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            main {
+                margin-left: 0;
+                padding: 20px;
+            }
+        }
+        
+        /* Simya Sembolleri */
+        .symbol {
+            font-size: 40px;
+            text-align: center;
+            display: block;
+            margin: 30px 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVİGASYON -->
+<nav>
+    <h1>Duyguların Simyası</h1>
+    <ul>
+        <li><a href="#giris" class="main-chapter">GİRİŞ: ATHANOR</a></li>
+        <li><a href="#prima-materia">Prima Materia: Ham Madde</a></li>
+        <li><a href="#yemin">Simyacının Yemini</a></li>
+
+        <li><a href="#nigredo" class="main-chapter">I. NIGREDO (Siyahlaşma)</a></li>
+        <li><a href="#cokelti">Kurşun: Çökelti ve Tortu</a></li>
+        <li><a href="#curume">Kederin Çürütücü Gücü</a></li>
+        <li><a href="#ham-ates">Demir: Ham Ateş ve Yıkım</a></li>
+        <li><a href="#kukurt">Kükürtün Ayrışması</a></li>
+
+        <li><a href="#albedo" class="main-chapter">II. ALBEDO (Beyazlaşma)</a></li>
+        <li><a href="#cozulme">Su: Çözülme (Solutio)</a></li>
+        <li><a href="#yansima">Yansıma ve Arınma</a></li>
+        <li><a href="#ucucu">Merkür: Uçucu Olanı Yakalamak</a></li>
+        <li><a href="#sublimlesme">Süblimleşme (Sublimatio)</a></li>
+
+        <li><a href="#citrinitas" class="main-chapter">III. CITRINITAS (Uyanış)</a></li>
+        <li><a href="#yesil-aslan">Venüs: Yeşil Aslanı Evcilleştirmek</a></li>
+        <li><a href="#ask">Aşkın Simyası</a></li>
+        <li><a href="#kibir">Jüpiter: Şişen Ego ve Kibir</a></li>
+        <li><a href="#asalet">Gerçek Asalet</a></li>
+
+        <li><a href="#rubedo" class="main-chapter">IV. RUBEDO (Bütünleşme)</a></li>
+        <li><a href="#kutsal-evlilik">Altın: Kutsal Evlilik</a></li>
+        <li><a href="#iksir">Ölümsüzlük İksiri</a></li>
+        <li><a href="#projeksiyon">Projeksiyon: Şifacının Eli</a></li>
+        <li><a href="#ouroboros">SONSUZLUK: Ouroboros</a></li>
+    </ul>
+</nav>
+
+<!-- İÇERİK -->
+<main>
+    <div class="symbol">🜄 🜃 🜂 🜁</div>
+    
+    <section id="giris">
+        <h2>GİRİŞ: ATHANOR (OCAK)</h2>
+        <p class="drop-cap">Dinle, ey ham maddeyi taşıyan yolcu. Bu kitap, duygularını bastırman veya onları "yönetmen" için değil; onları potaya atıp, cüruflarını yakarak içlerindeki kutsal gücü açığa çıkarman içindir. Hoş geldin.</p>
+    </section>
+
+    <hr>
+
+    <section id="prima-materia">
+        <h3>Prima Materia: Ruhun Ham Maddesi</h3>
+        <p>Bak. Gözlerini yukarıya, o hayal ettiğin sahte ışığa dikme. Aşağıya bak. Ayaklarının altındaki çamura, zihninin o en karanlık mahzenine bak. Orada, o tiksintiyle yüz çevirdiğin balçığın içinde, aradığın her şeyin tohumu yatıyor.</p>
+        <p>Simyada "Bizim işimiz pislikte başlar" (<em>In stercore invenitur</em>) denir. Prima Materia, senin ruhunun işlenmemiş, yontulmamış, adlandırılmamış ve bastırılmış ham halidir. O, senin içindeki o "şey"dir; tanımlayamadığın isimsiz ağırlık.</p>
+        <h4>Massa Confusa: Kaosun Doğası</h4>
+        <p>Bu kütlenin içinde zıtlıklar birbirine girmiştir. Sevgi ve nefret, korku ve arzu. Bu karmaşayı "delilik" sanırsın, oysa bu evrenin yaratılışından önceki potansiyel halidir.</p>
+    </section>
+
+    <section id="yemin">
+        <h3>Simyacının Yemini</h3>
+        <p>Bu bir sözleşme değildir. Geri dönüşü olmayan bir eşiktir. <strong>VITRIOL</strong>: <em>Visita Interiora Terrae Rectificando Invenies Occultum Lapidem.</em> (Dünyanın içine in, arıtarak gizli taşı bulacaksın.)</p>
+        <p>Yemin, acının içinde pasif bir kurban olarak kalmayı reddetmek ve <em>Rectificando</em> (Düzeltme) işlemini başlatmaktır. Sızıntı yapmayan, kapalı bir kap olmaktır (Hermetik Mühür). Enerji dışarı sızmamalı, içeride dönüşmelidir.</p>
+    </section>
+
+    <div class="symbol">⚫</div>
+
+    <section id="nigredo">
+        <h2>BÖLÜM I: NIGREDO (SİYAHLAŞMA)</h2>
+        <p>Burası ölüm ve çürümenin diyarıdır. Işık yoktur. Ama tohumlar karanlıkta çatlar.</p>
+    </section>
+
+    <section id="cokelti">
+        <h3>KURŞUN (SATÜRN): Çökelti ve Tortu</h3>
+        <p>Şu an hissettiğin o açıklanamaz yorgunluk, o yataktan kalkmayı imkansız kılan ağırlık... İşte o, senin Çökeltindir. Simya durmayı emreder. Fizik yasaları devreye girer: Ağır olan dibe çöker.</p>
+        <p>Bu hareketsizlik bir felç değil, suyun bulanıklığının geçmesi için bardağın masaya bırakılmasıdır. <em>Coagulatio</em> (Katılaşma), ruhun uçucu hallerini gerçeğin zeminine çeker. Ağırlıktan korkma. Sadece dipte sıçrama yapacak zemin vardır.</p>
+    </section>
+
+    <section id="curume">
+        <h3>Kederin Çürütücü Gücü (Putrefactio)</h3>
+        <p>Burnuna gelen koku hata değildir. O, egonun sahte kimliklerinin çürümesidir. Keder, bir asittir (Aqua Corrosiva). Senin etini kemiğinden, yalanını gerçeğinden ayırır.</p>
+        <p>Keder "eskisi gibi olmayı" imkansız kılar. Eski deri (Mortificatio) atılmalıdır. Bu evrede <strong>Siyah Güneş</strong> (Sol Niger) doğar; karanlıkta parlayan bilgelik.</p>
+    </section>
+
+    <section id="ham-ates">
+        <h3>DEMİR (MARS): Ham Ateş ve Yıkım</h3>
+        <p>Çürüme bitti, şimdi yanma vakti. Kurşun'dan Demir'e geçiş. Pasif kederden aktif öfkeye. Bu <em>Calcinatio</em> (Kireçleşme) işlemidir.</p>
+        <p><strong>Ham Ateş</strong>, kontrolsüz orman yangınıdır. Gereklidir, çünkü çürük binalar yıkılmadan yenisi yapılamaz. Senin öfken, "Hayır" deme gücündür. Yıkıcıdır ama dürüsttür. Ancak bu ateşin içinde yanmamalı, ateşi kabın içinde tutmalısın.</p>
+    </section>
+
+    <section id="kukurt">
+        <h3>Kükürtün Ayrışması (Separatio)</h3>
+        <p>Sülfür, ruhun yanıcı maddesidir. Şimdi cımbızla "Yanıcı Kükürt"ü (Ego/Hırs) "Sabit Kükürt"ten (İrade/Öz) ayıracağız. Bu, <em>Şeytan</em> ve <em>Işık Taşıyan</em> arasındaki farktır.</p>
+        <p>Dürtülerin kölesi olma. Onları damıt. Arzuyu, İradeye çevir. Öfkeyi, Adalete çevir. "Yapabilirim ama yapmıyorum" diyebilmek, Kükürtü ayrıştırmaktır.</p>
+    </section>
+
+    <div class="symbol">⚪</div>
+
+    <section id="albedo">
+        <h2>BÖLÜM II: ALBEDO (BEYAZLAŞMA)</h2>
+        <p>Ateşin külleri şimdi suyla yıkanıyor. Arınma, yansıma ve gümüşi bir sessizlik.</p>
+    </section>
+
+    <section id="cozulme">
+        <h3>SU (AY): Çözülme (Solutio)</h3>
+        <p>"Katı olanı çöz." Egonun o sert, köşeli, yargılayıcı yapısı gözyaşlarıyla erir. <em>Solutio</em>, okyanusa dönüştür. Korku, buz tutmuş sudur; akış ise onun erimesidir.</p>
+        <p>Bu evrede zemin kaybolur. Panikleme. Yüzmeyi öğreniyorsun. Kaygıyı bir düşman değil, bir pusula olarak gör; o seni çözülmesi gereken yere götürür.</p>
+    </section>
+
+    <section id="yansima">
+        <h3>Yansıma ve Arınma (Reflectio)</h3>
+        <p>Dünya bir aynadır (Speculum). Dışarıda gördüğün her "leke", senin içindeki bir çamurun yansımasıdır. Aynayı silme, kendini yıka (Ablutio).</p>
+        <p>Arınma, nötrleşmektir. Gümüş bir ayna gibi, yargılamadan yansıtmaktır. Projeksiyonu geri çekmek: "O beni kızdırdı" değil, "Benim içimde öfke uyandı."</p>
+    </section>
+
+    <section id="ucucu">
+        <h3>CIVA (MERKÜR): Uçucu Olanı Yakalamak</h3>
+        <p>Zihin, ele avuca sığmayan cıvadır. <em>Servus Fugitivus</em> (Kaçak Köle). Maymun zihin daldan dala atlar. Onu öldürme, sabitle (Fixatio).</p>
+        <p>Dikkatini bir çivi gibi düşünceye sapla. İçeriğine değil, enerjisine odaklan. Dilini tut (Sessizlik Mühürü), enerjin sızmasın. Merkür sabitlendiğinde, zihin bir efendi değil, mükemmel bir hizmetkar olur.</p>
+    </section>
+
+    <section id="sublimlesme">
+        <h3>Süblimleşme (Sublimatio)</h3>
+        <p>Maddeyi (yerçekimini) gaza (Ruh'a) çevirmek. En "alçak" dürtülerini (cinsellik, öfke), en "yüksek" frekansa (sanat, adalet, ibadet) fırlatmak.</p>
+        <p>Yerden göğe. Anka Kuşu kanatlanıyor. Cinsel enerjiyi yaratıcılığa, kederi bilgeliğe yükseltmek. Ama İkarus olma; köklerin yerde kalsın.</p>
+    </section>
+
+    <div class="symbol">🟡</div>
+
+    <section id="citrinitas">
+        <h2>BÖLÜM III: CITRINITAS (UYANIŞ)</h2>
+        <p>Ay batar, Güneş doğar. Soğukluk biter, sarı bir sıcaklık ve bilgelik başlar.</p>
+    </section>
+
+    <section id="yesil-aslan">
+        <h3>BAKIR (VENÜS): Yeşil Aslanı Evcilleştirmek</h3>
+        <p><strong>Yeşil Aslan</strong>, ham arzudur. Güneşi (Bilinci) yemek ister. Onu öldürme, evcilleştir. Asit (Arzu), egoyu eritir. Tüketen değil, dönüştüren bir tutkuya geç.</p>
+        <p>Açgözlülüğü, estetiğe çevir. Bakır paslandığında zehirlidir, parlatıldığında aşkın ve uyumun metalidir.</p>
+    </section>
+
+    <section id="ask">
+        <h3>Aşkın Simyası</h3>
+        <p>Eros ve Psikhe. Sadece romantizm değil; <em>Mysterium</em>. Şehvetten Şefkate dikey geçiş. Başkasında kendini aramayı bırak (Projeksiyon), onu olduğu gibi sev (Şefkat).</p>
+        <p>Aşk, "ben" sınırlarının erimesidir, ama içinde kaybolmak değildir. Aşık olunan ile "BİR" olmaktır.</p>
+    </section>
+
+    <section id="kibir">
+        <h3>KALAY (JÜPİTER): Şişen Ego ve Kibir</h3>
+        <p>Güçlendiğinde en büyük tehlike gelir: Enflasyon (Şişinme). Kendini Tanrı sanma yanılgısı. "Ben yaptım" diyen Sahte Kral.</p>
+        <p>Kibir, başkasını küçülterek büyür. Jüpiter'in gölgesinden kaç, mizahla iğnele o balonu.</p>
+    </section>
+
+    <section id="asalet">
+        <h3>Gerçek Asalet (Nobilitas)</h3>
+        <p>Kral öldü, yaşasın Gerçek Kral. Asalet, gösteriş değil, varlığın ağırlığıdır (Gravitas). Cömertlik (Magnanimitas) ve koruyuculuk.</p>
+        <p>Gücünü ezmek için değil, himaye etmek için kullan. Onurlu ve bütün (Integrated) ol. Güneş gibi; kimseyi ayırmadan ışık saç.</p>
+    </section>
+
+    <div class="symbol">🔴</div>
+
+    <section id="rubedo">
+        <h2>BÖLÜM IV: RUBEDO (BÜTÜNLEŞME)</h2>
+        <p>Kızıl Şafak. Ruh maddeye, Tanrı bedene indi. Zıtların dansı ve taşın oluşumu.</p>
+    </section>
+
+    <section id="kutsal-evlilik">
+        <h3>ALTIN (GÜNEŞ): Kutsal Evlilik</h3>
+        <p><em>Mysterium Coniunctionis</em>. Kral ve Kraliçe, Eril ve Dişil, Mantık ve Sezgi, Işık ve Gölge birleşti. Çatışma bitti.</p>
+        <p><strong>Rebis</strong> (Çift Başlı Varlık). Artık yarım değilsin, tamsın. Bu dünyada yaşıyorsun ama bu dünyadan değilsin.</p>
+    </section>
+
+    <section id="iksir">
+        <h3>Ölümsüzlük İksiri (Elixir Vitae)</h3>
+        <p>Anka Kuşu'nun kanatlarından damlayan sıvı. Bedenin değil, Bilincin ölümsüzlüğü. Zamanın (Chronos) dışına çıkıp Ebediyeti (Kairos) yaşamak.</p>
+        <p>Her an ölüp her an doğan bilinç. Hastalık bir mesaj, ölüm bir nefes veriş. İçsel bütünlüğün, tüm hastalıkların (parçalanmışlığın) ilacıdır (Panacea).</p>
+    </section>
+
+    <section id="projeksiyon">
+        <h3>PROJEKSİYON: Şifacının Eli</h3>
+        <p>İksir kendine saklanmaz. Altını dünyaya saçmak. <strong>Şifacının Eli</strong>, nasırlı ve yanık izleriyle doludur. Kendi yarasını tanıyan, başkasına şifa olur.</p>
+        <p>Sözcüklerle değil, Varlık Haliyle şifa vermek (Rezonans). Yaralı Şifacı, kendi içindeki şifayı uyandırır.</p>
+    </section>
+
+    <section id="ouroboros">
+        <h3>SONSUZLUK: Ouroboros</h3>
+        <p>Başlangıç sondur. Yılan kuyruğunu yer. Geçmişi sindir, geleceği besle. Bu bir kısırdöngü değil, bir Helezon (Spiral).</p>
+        <p>Varış yok. Sadece sonsuz bir oluş (Becoming) var. Bu kitabı kapat ve kendi karanlığına (Nigredo) geri dön. Ama artık, simyayı biliyorsun. <strong>Da Capo.</strong></p>
+    </section>
+
+    <hr>
+    <div class="symbol" style="color:var(--accent-crimson)">♾️</div>
+
+</main>
+
+</body>
+</html>
